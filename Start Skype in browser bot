@@ -1,0 +1,41 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+
+url=''
+url2='https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=13&ct=1551194974&rver=7.1.6819.0&wp=MBI_SSL&wreply=https%3A%2F%2Flw.skype.com%2Flogin%2Foauth%2Fproxy%3Fclient_id%3D360605%26redirect_uri%3Dhttps%253A%252F%252Fsecure.skype.com%252Fportal%252Flogin%253Freturn_url%253Dhttps%25253A%25252F%25252Fsecure.skype.com%25252Fportal%25252Foverview%26response_type%3Dpostgrant%26state%3Dcf0d5ea4d6216e1e21b9e098%26site_name%3Dlw.skype.com&lc=1033&id=293290&mkt=en&psi=skype&lw=1&cobrandid=2befc4b5-19e3-46e8-8347-77317a16a5a5&client_flight=ReservedFlight33%2CReservedFlight67'#'https://www.skype.com/en/#'
+skyuser = ''
+skypass = ''
+x = webdriver.Chrome("")
+#opens the website
+x.get(url2)
+x.implicitly_wait(45)
+#inputs user name
+x.find_element_by_xpath("//input[@placeholder='Email, phone, or Skype']").send_keys(skyuser)
+#x.find_element_by_xpath("//a[@class='btn secondaryCta small usernameBtn notAuthenticated']").click()
+x.implicitly_wait(45)
+#submits the firs info ( username )
+x.find_element_by_xpath("//input[@id='idSIButton9']").click()
+#x.find_element_by_xpath("//a[@class='x-hidden-focus'][contains(text(),'My account')]").click()
+#funfact, without time.sleep command it would just type in 2-3 characters,
+#each and everytime and jump to button to submit it.
+time.sleep(5)
+#types in password
+x.find_element_by_xpath("//input[@id='i0118']").send_keys(skypass)
+time.sleep(2)
+#clicks sign in button
+#x.find_element_by_xpath("//input[@id='i0118']").send_keys('')
+x.implicitly_wait(60)
+#x.find_element_by_xpath("//input[@id='idChkBx_PWD_KMSI0Pwd']").click()
+x.find_element_by_xpath("//input[@value='Sign in']").click()
+#i intentionally left all the previous tries, because it is a good learning experience
+#x.find_element_by_xpath("//input[@value='Sign in']").click()
+#x.find_element_by_id('uhfCatLogo').click()
+#x.find_element_by_id('skypeIcon').click()
+x.implicitly_wait(30)
+#There are other ways, but this one was the fastest, and shortest, and easiest.
+x.find_element_by_class_name("_3cuHr").click()
+x.implicitly_wait(30)
+#and voila it load skype in your browser
+x.find_element_by_xpath("//ul[contains(@class,'_1Xhns _2HGCf')]//li[2]").click()
+#x.find_element_by_xpath("//ul[@class='subMenu signInDropdown']//li[2]").click()
